@@ -1,62 +1,52 @@
 ﻿#include<stdio.h>
+#define SIZE 10
 
-#define SIZE 1000000
 
 int main()
 {
-#pragma region 파일 입출력
-	
+#pragma region GetAsyncKeyState
+	// Windows API에서 제공하는 입력 처리 함수로,
+	// 지정된 키의 상태를 비동기적으로 확인할 때 사용되는 함수.
 
-#pragma region File Write
-	// fopen(첫 번째 매개 변수) : 파일의 이름
-	// fopen(두 번째 매개 변수) : 입력 & 출력 모드
+	// Key State
+	// 0x0000 : 이전에 누른 적이 없고, 호출 시점에도 눌려있지 않은 상태
+	// 0x0001 : 이전에 누른 적이 있고, 호출 시점에는 눌려있지 않은 상태
+	// 0x8000 : 이전에 누른 적이 없고, 호출 시점에는 눌려있는 상태
+	// 0x8001 : 이전에 누른 적이 있고, 호출 시점에도 눌려있는 상태
 
-	// "r" : 읽기 전용 (파일이 없을 때 : NULL)
-	// "w" : 쓰기 전용 (새로 파일을 생성)
-	// "a" : 추가 모드 (새로 파일을 생성 - 기존에 있는 파일에 내용을 추가)
-
-	//FILE* file = fopen("data.txt","w");
-
-	//fputs("Strength: \n", file);
-	//fputs("Dexterity: \n", file);
-	//fputs("Wisdom: \n", file);
-	//fputs("Intelligence: \n", file);
-	//fputs("Constitution: ", file);
-	//
-	//fclose(file);
-#pragma endregion
-
-#pragma region File Read
-
-	//FILE* file = fopen("data.txt", "r");
-
-	//char buffer[SIZE] = { 0, };
-
-	//// 1. buffer : 읽을 데이터를 저장할 메모리
-	//// 2. element size : 각 데이터 항목의 크기
-	//// 3. element count : 데이터를 읽어올 데이터의 항목의 수
-	//// 4. stream: 데이터를 읽어올 파일 포인터
-
-	//
-
-	//fread(buffer,1,SIZE,file);
-
-	//printf("%s", buffer);
-
-	//fclose(file);
-
-	FILE* chico = fopen("chico.TXT", "r");
-
-	char buffer[SIZE] = { 0, };
-
-	fread(buffer, 1, SIZE, chico);
-
-	printf("%s", buffer);
-
-	fclose(chico);
-#pragma endregion
 
 	
+	const char* chat[SIZE] =
+	{
+		"흠, 손님이군.",
+		"실례합니다.",
+		"무슨일로 오셨나요?",
+		"사건을 하나 의뢰하고 싶은데요.",
+		"어떤 사건인가요? 사람찾기? 조사? 아니면...",
+		"이 사람을 찾아주세요.",
+		"이 사람은... 최근에 뉴스에 나왔던 그 사람이군요.",
+		"...그리고 제 남편입니다.",
+		"이런, 실례했습니다.",
+		"괜찮습니다. 저도 잘 모르겠어서 여기로 온 거니까요.",
+	};
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		if(i%2==1)
+		{
+			printf("의뢰인:");
+		}
+		else
+		{
+			printf("탐정:");
+		}
+		printf("%s\n", chat[i]);
+	}
+
+	
+
+	//short GetAsyncKeyState(int key);
+
 
 #pragma endregion
 
