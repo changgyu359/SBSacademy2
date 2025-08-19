@@ -1,56 +1,51 @@
 ﻿#include<stdio.h>
-#define SIZE 10
+#include<Windows.h>
+#define UP 72
+#define LEFT 75
+#define RIGHT 77
+#define DOWN 80
 
+void move(int x, int y)
+{
+	// x와 y축을 설정하는 구조체.
+	COORD position = { x,y };
+
+	// 콘솔 커서의 좌표를 설정하는 함수.
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), (position));
+}
+ 
+
+// update statement
+// while(1) {}
+// 매 프레임마다 묻는 무한루프.
 
 int main()
 {
-#pragma region GetAsyncKeyState
-	// Windows API에서 제공하는 입력 처리 함수로,
-	// 지정된 키의 상태를 비동기적으로 확인할 때 사용되는 함수.
-
-	// Key State
-	// 0x0000 : 이전에 누른 적이 없고, 호출 시점에도 눌려있지 않은 상태
-	// 0x0001 : 이전에 누른 적이 있고, 호출 시점에는 눌려있지 않은 상태
-	// 0x8000 : 이전에 누른 적이 없고, 호출 시점에는 눌려있는 상태
-	// 0x8001 : 이전에 누른 적이 있고, 호출 시점에도 눌려있는 상태
-
+	// 72 up
+	// 75 Left
+	// 77 Right
+	// 80 Down
+	
 
 	
-	const char* chat[SIZE] =
-	{
-		"흠, 손님이군.",
-		"실례합니다.",
-		"무슨일로 오셨나요?",
-		"사건을 하나 의뢰하고 싶은데요.",
-		"어떤 사건인가요? 사람찾기? 조사? 아니면...",
-		"이 사람을 찾아주세요.",
-		"이 사람은... 최근에 뉴스에 나왔던 그 사람이군요.",
-		"...그리고 제 남편입니다.",
-		"이런, 실례했습니다.",
-		"괜찮습니다. 저도 잘 모르겠어서 여기로 온 거니까요.",
-	};
 
-	for (int i = 0; i < SIZE; i++)
+	while (1)
 	{
-		if(i%2==1)
+		char x = _getch();
+		switch (x)
 		{
-			printf("의뢰인:");
+		case UP: printf("UP\n");
+			break;
+		case LEFT: printf("LEFT\n");
+			break;
+		case RIGHT: printf("RIGHT\n");
+			break;
+		case DOWN: printf("DOWN\n");
+			break;
 		}
-		else
-		{
-			printf("탐정:");
-		}
-		printf("%s\n", chat[i]);
 	}
 
 	
-
-	//short GetAsyncKeyState(int key);
-
-
-#pragma endregion
-
-
 
 	return 0;
 }
